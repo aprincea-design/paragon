@@ -1,0 +1,169 @@
+{
+ "who": "AJ",
+ "era": "TEN YEARS",
+ "updated": "25 October 2026",
+ "updatedAt": "2026-10-26T05:32:02.165Z",
+ "days": 80,
+ "streak": 0,
+ "best": 1,
+ "paragon": 0,
+ "momentum": 0,
+ "domains": {
+  "work": {
+   "name": "The Work",
+   "goal": "The MHA, then the doctorate, then policy that moves preventative medicine.",
+   "standing": 0,
+   "momentum": 0
+  },
+  "body": {
+   "name": "The Body",
+   "goal": "Fourteen per cent body fat, and the strength and bearing that come with it.",
+   "standing": 0,
+   "momentum": 0
+  },
+  "mind": {
+   "name": "The Mind",
+   "goal": "Interesting and knowledgeable about the world.",
+   "standing": 0,
+   "momentum": 0
+  },
+  "means": {
+   "name": "The Means",
+   "goal": "Fourteen million banked, through Desk Doctor Recovery Kits.",
+   "standing": null,
+   "momentum": 0
+  },
+  "foundation": {
+   "name": "The Foundation",
+   "goal": "The house kept — the ground the other four stand on.",
+   "standing": 0,
+   "momentum": 0
+  }
+ },
+ "week": [
+  {
+   "day": "2026-10-19",
+   "rate": 0,
+   "today": false,
+   "future": false
+  },
+  {
+   "day": "2026-10-20",
+   "rate": 0,
+   "today": false,
+   "future": false
+  },
+  {
+   "day": "2026-10-21",
+   "rate": 0,
+   "today": false,
+   "future": false
+  },
+  {
+   "day": "2026-10-22",
+   "rate": 0,
+   "today": false,
+   "future": false
+  },
+  {
+   "day": "2026-10-23",
+   "rate": 0,
+   "today": false,
+   "future": false
+  },
+  {
+   "day": "2026-10-24",
+   "rate": 0,
+   "today": false,
+   "future": false
+  },
+  {
+   "day": "2026-10-25",
+   "rate": 0,
+   "today": true,
+   "future": false
+  }
+ ],
+ "missed": [
+  {
+   "key": "work",
+   "name": "The Work",
+   "count": 5,
+   "of": 5
+  },
+  {
+   "key": "body",
+   "name": "The Body",
+   "count": 20,
+   "of": 20
+  },
+  {
+   "key": "mind",
+   "name": "The Mind",
+   "count": 3,
+   "of": 3
+  },
+  {
+   "key": "means",
+   "name": "The Means",
+   "count": 7,
+   "of": 7
+  },
+  {
+   "key": "foundation",
+   "name": "The Foundation",
+   "count": 31,
+   "of": 31
+  }
+ ],
+ "overdue": [
+  {
+   "name": "Change sheets",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Bathroom towels",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Deep clean showers",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Deep clean toilets",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Vacuum under furniture",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Empty trash cans",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Clean microwave",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  },
+  {
+   "name": "Wash water bottles",
+   "over": 72,
+   "never": true,
+   "every": "week"
+  }
+ ]
+}
