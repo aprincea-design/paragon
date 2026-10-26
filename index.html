@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PARAGON</title>
+<meta name="description" content="Ten years, five domains, in public.">
+<style>
+/* ============================================================
+   PARAGON — the public page.
+   Reads data.json beside it. Nothing else. No build, no framework,
+   no request that leaves this origin.
+   ============================================================ */
+:root{
+  --ash:#14110F; --basalt:#1C1815; --slate:#241F1B;
+  --iron:#4A443E; --iron-lit:#6E655C;
+  --bone:#E9E1D2; --bone-dim:#9C9287;
+  --gold:#D9A441; --gold-deep:#8C6420;
+  --ember-lit:#D4562F; --honor:#BFD3D9;
+  --display:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --body:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --data:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--ash);color:var(--bone)}
+body{font-family:var(--body);font-size:16px;line-height:1.5;padding:0 16px 64px}
+.wrap{max-width:720px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:baseline;
+  padding:26px 0 8px;border-bottom:1px solid var(--iron);margin-bottom:8px}
+.mark{font-family:var(--display);font-size:23px;letter-spacing:.22em}
+.era{font-family:var(--data);font-size:10px;letter-spacing:.16em;color:var(--iron-lit);
+  text-transform:uppercase}
+.par{text-align:center;padding:34px 0 10px}
+.par-n{font-family:var(--data);font-size:58px;line-height:1;color:var(--gold);font-weight:400}
+.par-n span{font-size:24px;color:var(--gold-deep)}
+.par-k{font-family:var(--data);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--iron-lit);margin-top:10px}
+.par-sub{font-family:var(--data);font-size:11px;letter-spacing:.1em;color:var(--bone-dim);margin-top:11px}
+.eyebrow{font-family:var(--data);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--iron-lit);margin:30px 0 10px}
+.panel{background:var(--basalt);border:1px solid var(--iron);border-radius:3px;padding:14px}
+.doms{display:grid;gap:1px;background:var(--iron);border:1px solid var(--iron);border-radius:3px}
+.dom{background:var(--basalt);padding:14px}
+.dom.base{border-top:1px solid var(--gold-deep);background:var(--slate)}
+.dom-base-k{font-family:var(--data);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:7px}
+.dom-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.dom-n{font-family:var(--display);font-size:18px}
+.dom-v{font-family:var(--data);font-size:15px;color:var(--gold)}
+.dom-v.held{color:var(--iron-lit)}
+.dom-bars{margin-top:10px;display:grid;gap:5px}
+.meter{height:3px;background:var(--slate);border-radius:2px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--gold)}
+.meter.mo i{background:var(--honor)}
+.dom-mo{display:flex;align-items:center;gap:8px}
+.dom-mo .meter{flex:1}
+.dom-mo em{font-style:normal;font-family:var(--data);font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--iron-lit);flex:0 0 auto;min-width:86px;text-align:right}
+.dom-why{margin:9px 0 0;font-size:12.5px;line-height:1.45;color:var(--bone-dim)}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:14px;height:42px}
+.wd{background:var(--slate);border-radius:2px;overflow:hidden;display:flex;align-items:flex-end}
+.wd i{display:block;width:100%;background:var(--honor)}
+.wd.now{outline:1px solid var(--gold-deep)}
+.wd.fut{opacity:.3}
+.week-k{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:6px;
+  font-family:var(--data);font-size:9px;letter-spacing:.1em;color:var(--iron-lit);text-align:center}
+.stat-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:6px 0}
+.stat-k{font-family:var(--data);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--iron-lit)}
+.stat-v{font-family:var(--data);font-size:15px}
+.rule{height:1px;background:var(--iron);border:0;margin:0}
+.miss{color:var(--ember-lit)}
+.tiny{font-size:13px} .muted{color:var(--bone-dim)}
+.foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--iron);
+  font-family:var(--data);font-size:10px;letter-spacing:.1em;color:var(--iron-lit);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.err{border:1px solid var(--gold-deep);border-radius:3px;padding:16px;margin-top:24px;
+  color:var(--bone-dim);font-size:14px}
+@media (min-width:640px){ .doms{grid-template-columns:1fr 1fr} .dom.base{grid-column:1/-1} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="mark">PARAGON</span>
+    <span class="era" id="era">TEN YEARS</span>
+  </header>
+  <div id="body"></div>
+</div>
+
+<script>
+"use strict";
+/* The page is a reader. Everything it shows comes from data.json, which
+   the app writes. If the file is missing or malformed the page says so
+   rather than drawing an empty frame that looks like zero progress. */
+var ORDER=["work","body","mind","means","foundation"];
+
+function pct(x){ return Math.round((x||0)*1000)/10; }
+function show(x){ var v=pct(x); return v<10?v.toFixed(1):String(Math.round(v)); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){
+  return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+function domRow(d,base){
+  var standing=d.standing==null
+    ? '<span class="dom-v held">held private</span>'
+    : '<span class="dom-v">'+show(d.standing)+'%</span>';
+  var bar=d.standing==null?"":
+    '<div class="meter"><i style="width:'+pct(d.standing)+'%"></i></div>';
+  return '<div class="dom'+(base?" base":"")+'">'+
+    (base?'<div class="dom-base-k">The ground the other four stand on</div>':"")+
+    '<div class="dom-top"><span class="dom-n">'+esc(d.name)+'</span>'+standing+'</div>'+
+    '<div class="dom-bars">'+bar+
+      '<div class="dom-mo"><div class="meter mo"><i style="width:'+pct(d.momentum)+'%"></i></div>'+
+      '<em>'+Math.round(pct(d.momentum))+'% this week</em></div></div>'+
+    (d.goal?'<p class="dom-why">'+esc(d.goal)+'</p>':"")+
+  '</div>';
+}
+
+function weekStrip(week){
+  if(!week||!week.length) return "";
+  var keys=["M","T","W","T","F","S","S"];
+  var cells=week.map(function(w,i){
+    return '<span class="wd'+(w.future?" fut":"")+(w.today?" now":"")+'"'+
+      ' title="'+esc(w.day)+'"><i style="height:'+Math.round(pct(w.rate))+'%"></i></span>';
+  }).join("");
+  return '<div class="week">'+cells+'</div><div class="week-k">'+
+    keys.map(function(k){ return "<span>"+k+"</span>"; }).join("")+'</div>';
+}
+
+function render(d){
+  var doms=ORDER.filter(function(k){ return d.domains&&d.domains[k]; });
+  var missed=(d.missed||[]).filter(function(m){ return m.count>0; });
+  var over=(d.overdue||[]);
+
+  document.getElementById("era").textContent=d.era||"TEN YEARS";
+  document.getElementById("body").innerHTML=
+    '<div class="par"><div class="par-n">'+show(d.paragon)+'<span>%</span></div>'+
+      '<div class="par-k">Paragon</div>'+
+      '<div class="par-sub">Day '+(d.days||0)+' · '+(d.streak||0)+'-day streak</div></div>'+
+
+    '<div class="eyebrow">The five</div>'+
+    '<div class="doms">'+
+      doms.filter(function(k){ return k!=="foundation"; })
+          .map(function(k){ return domRow(d.domains[k],false); }).join("")+
+      (d.domains.foundation?domRow(d.domains.foundation,true):"")+
+    '</div>'+
+
+    '<div class="eyebrow">This week</div>'+
+    '<div class="panel">'+
+      '<div class="stat-row"><span class="stat-k">Momentum</span>'+
+        '<span class="stat-v">'+Math.round(pct(d.momentum))+'%</span></div>'+
+      '<div class="meter mo" style="margin-top:8px"><i style="width:'+pct(d.momentum)+'%"></i></div>'+
+      weekStrip(d.week)+
+    '</div>'+
+
+    '<div class="eyebrow">What he missed</div>'+
+    '<div class="panel">'+
+      (missed.length
+        ? missed.map(function(m,i){
+            return (i?'<hr class="rule">':"")+
+              '<div class="stat-row"><span class="stat-k">'+esc(m.name)+'</span>'+
+              '<span class="stat-v miss">'+m.count+' of '+m.of+'</span></div>'; }).join("")
+        : '<p class="tiny muted" style="margin:0">Nothing. Every deed on the board this week was sealed.</p>')+
+    '</div>'+
+
+    (over.length
+      ? '<div class="eyebrow">Overdue</div><div class="panel">'+
+        over.map(function(o,i){
+          return (i?'<hr class="rule">':"")+
+            '<div class="stat-row"><span class="stat-k">'+esc(o.name)+'</span>'+
+            '<span class="stat-v miss">'+o.over+" day"+(o.over===1?"":"s")+" over"+
+              (o.never?" · never done":"")+'</span></div>';
+        }).join("")+'</div>'
+      : "")+
+
+    '<div class="foot"><span>'+esc(d.who||"Aubrey Prince")+'</span>'+
+      '<span>Updated '+esc(d.updated||"—")+'</span></div>';
+}
+
+function fail(msg){
+  document.getElementById("body").innerHTML=
+    '<div class="err"><b>Nothing to show yet.</b><br>'+esc(msg)+'</div>';
+}
+
+fetch("data.json?t="+Date.now())
+  .then(function(r){ if(!r.ok) throw new Error("data.json came back "+r.status); return r.json(); })
+  .then(function(d){
+    if(!d||!d.domains) throw new Error("data.json is not in the shape this page reads.");
+    render(d);
+  })
+  .catch(function(e){ fail(e.message); });
+</script>
+</body>
+</html>
